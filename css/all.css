@@ -35,3 +35,7 @@ button, select {
 
 .recBtn {
   color: red; }
+
+.message {
+  font-size: 200%;
+  color: #00aaff; }

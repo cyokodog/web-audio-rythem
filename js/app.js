@@ -44,15 +44,15 @@
         c.view.renderInfoUi();
         c.view.renderScoreSection();
 
+        c.view.config.el.message.textContent = 'now loading...';
         o.getAudioBuffers(function(audioBuffers){
+            c.view.config.el.message.textContent = '';
             c.audio = new Audio(c.audioContext, {
                audioBuffers: audioBuffers
             });
             o.setupAudioParam();
             c.recorder = new Recorder(c.audioContext);
-
             o.control();
-
         });
 
     }
@@ -242,6 +242,7 @@
     function init(setting){
         var o = this, c = o.config = Ut.extend({}, setting||{});
         c.el = {
+            message: document.querySelector('.message'),
             playBtn: document.querySelector('.playBtn'),
             scoreSelector: document.querySelector('.scoreSelector'),
             effectSoundSelector: document.querySelector('.effectSoundSelector'),
