@@ -36,16 +36,32 @@ Recorder.prototype = {
             c.stream = s;
             c.audioBufferArray = []
             var mediaStreamSource = c.context.createMediaStreamSource(c.stream);
+            var analyser = c.context.createAnalyser();
             c.scriptProcessor = c.context.createScriptProcessor(c.bufferSize, 1, 1);
             c.scriptProcessor.onaudioprocess = function(event){
-                var channel = event.inputBuffer.getChannelData(0);
-                var buffer = new Float32Array(c.bufferSize);
-                for (var i = 0; i < c.bufferSize; i++) {
-                    buffer[i] = channel[i];
+                var getVolume = function(){
+                    var volume = 0;
+                    var view = new Uint8Array(analyser.frequencyBinCount);
+                    analyser.getByteFrequencyData(view);
+                    for(var i = 0; i < view.length; i++){
+                        volume += view[i]
+                    }
+                    return volume;
                 }
-                c.audioBufferArray.push(buffer);
+                var saveAudioBuffer = function(){
+                    var channel = event.inputBuffer.getChannelData(0);
+                    var buffer = new Float32Array(c.bufferSize);
+                    for (var i = 0; i < c.bufferSize; i++) {
+                        buffer[i] = channel[i];
+                    }
+                    c.audioBufferArray.push(buffer);
+                }
+                if(getVolume() >= c.detectionMinVolume){
+                    saveAudioBuffer();
+                }
             }
-            mediaStreamSource.connect(c.scriptProcessor);
+            mediaStreamSource.connect(analyser);
+            analyser.connect(c.scriptProcessor);
             c.scriptProcessor.connect(c.context.destination);
         })
     },
@@ -78,5 +94,6 @@ Recorder.prototype = {
     }
 }
 Recorder.defauts = {
-    bufferSize : 4096
+    bufferSize : 4096,
+    detectionMinVolume: 10000
 }
