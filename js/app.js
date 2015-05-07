@@ -79,6 +79,7 @@
             score: o.getNowScore().score,
             tempo: c.sts.tempo
         });
+        c.audio.chancelPlaySchedule();
     }
 
     function getNowScore(){
