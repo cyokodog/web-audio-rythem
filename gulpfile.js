@@ -19,7 +19,8 @@ gulp.task("server", function() {
 });
 
 gulp.task("sass", function() {
-	gulp.src("sass/**/*scss")
+//	gulp.src("sass/**/*scss")
+	gulp.src(['sass/style.scss','sass/parts.scss'])
 		.pipe(plumberWithNotify())
 		.pipe($.frontnote({
 			css: '../css/style.css'
@@ -37,9 +38,20 @@ gulp.task("sass", function() {
 });
 
 gulp.task("js", function() {
-	gulp.src(["js/**/*.js","!js/min/**/*.js"])
+//	gulp.src(["js/**/*.js","!js/min/**/*.js"])
+	gulp.src([
+		'js/util.js',
+		'js/venderPrefix.js',
+		'js/audioHelper.js',
+		'js/audio.js',
+		'js/recorder.js',
+		'js/app.js',
+		'js/index.js',
+		'!js/min/**/*.js'
+	])
 		.pipe(plumberWithNotify())
 		.pipe($.uglify())
+		.pipe($.concat('all.js'))
 		.pipe(gulp.dest("./js/min"))
 		.pipe(browser.reload({
 			stream:true

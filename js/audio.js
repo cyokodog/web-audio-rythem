@@ -21,51 +21,6 @@ Audio.prototype = {
         var o = this , c = o.config = o._extend(o.config, options||{});
         if(c.audioBuffers && c.effectSoundId != oldEffectSoundId) c.convolver.buffer = c.audioBuffers[c.effectSoundId];
     },
-
-/*
-    hoge: function(){
-        var o = this , c = o.config;
-        c.loop = c.loop - c.preScheduleLoop;
-        c.bufferSources.forEach(function(bufferSource){
-            bufferSource.stop();
-            c.bufferSources.shift();
-        })
-    },
-    playScore: function(){
-        var o = this , c = o.config;
-        var currentTime = c.context.currentTime;
-        c.loop = 0;
-        c.isPlaying = true;
-        c.bufferSources = [];
-        var noteSchedule = function(){
-            for(var i = 0;i < c.beat; i++){
-                c.score.forEach(function(v, j){
-                    if(!v.pattern[i]) return;
-                    var bufferSource = c.context.createBufferSource();
-                    bufferSource.buffer = c.audioBuffers[v.soundId];
-                    bufferSource.connect(c.gain);
-                    bufferSource.start(0.1 + currentTime + (i + c.loop * c.beat)/4 * (60/c.tempo)) ;
-                    c.bufferSources.push(bufferSource);
-                    bufferSource.onended = function(){
-                        c.bufferSources.shift();
-                    }
-                });
-            }
-            c.loop ++;
-            console.log(c.loop)
-        }
-        var playSchedule = function(){
-            c.timer = setTimeout(function(){
-                if((c.context.currentTime - currentTime) >= ((c.loop - c.preScheduleLoop) * c.beat)/4 * (60/c.tempo)){
-                    noteSchedule();
-                }
-                playSchedule();
-            },0)
-        }
-        playSchedule();
-    },
-*/
-
     chancelPlaySchedule: function(){
         var o = this , c = o.config;
         c.loop = c.loop - c.preScheduleLoop;
@@ -116,11 +71,6 @@ Audio.prototype = {
         var o = this , c = o.config;
         if(!c.isPlaying) return;
         c.isPlaying = false;
-/*
-        c.bufferSources.forEach(function(bufferSource){
-            bufferSource.stop();
-        })
-*/
         c.bufferSources.forEach(function(json){
             json.bufferSource.stop();
         })

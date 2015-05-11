@@ -1,13 +1,13 @@
 @charset "UTF-8";
 /*
 #overview
-Web Audio Rythem
+style
 */
 /*#styleguide
-数値入力フィールド
+メッセージ
  
 ```
-<input type="number" value="123"/>
+<input type="number"/>
 ```
 */
 body {
@@ -20,22 +20,3 @@ input[type=number] {
 
 button, select {
   width: 15em; }
-
-.l_template {
-  display: none; }
-
-.part {
-  padding: 8px 0; }
-
-.part__soundId {
-  display: inline-block; }
-
-.score__section {
-  margin-right: 8px; }
-
-.recBtn {
-  color: red; }
-
-.message {
-  font-size: 200%;
-  color: #00aaff; }

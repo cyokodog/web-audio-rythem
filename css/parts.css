@@ -1,29 +1,6 @@
 @charset "UTF-8";
 /*
 #overview
-style
-*/
-/*#styleguide
-メッセージ
- 
-```
-<input type="number"/>
-```
-*/
-body {
-  font-size: 9pt; }
-
-input[type=number] {
-  padding: 4px;
-  border-radius: 4px;
-  border: solid 1px #ccc; }
-
-button, select {
-  width: 15em; }
-
-@charset "UTF-8";
-/*
-#overview
 parts
 */
 /*#styleguide

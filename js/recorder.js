@@ -57,6 +57,7 @@ Recorder.prototype = {
                     c.audioBufferArray.push(buffer);
                 }
                 if(getVolume() >= c.detectionMinVolume){
+console.log('rec start! '+getVolume())
                     saveAudioBuffer();
                 }
             }
