@@ -1,0 +1,35 @@
+/*
+#overview
+parts
+*/
+ 
+/*#styleguide
+メッセージ
+ 
+```
+<p class="message">Hello</p>
+```
+*/
+.l_template{
+	display: none;
+}
+.part{
+	padding: 8px 0;
+}
+.part__soundId{
+	display: inline-block;
+}
+
+.score__section{
+	margin-right: 8px;
+}
+.recBtn{
+	color: red;
+}
+.message{
+	font-size: 200%;
+	color: #00aaff;
+}
+
+
+
