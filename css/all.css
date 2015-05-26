@@ -4,8 +4,7 @@
 style
 */
 /*#styleguide
-メッセージ
- 
+ベース要素のスタイル 
 ```
 <input type="number"/>
 ```
@@ -24,10 +23,9 @@ button, select {
 @charset "UTF-8";
 /*
 #overview
-parts
 */
 /*#styleguide
-メッセージ
+パーツ要素のスタイル
  
 ```
 <p class="message">Hello</p>
