@@ -101,7 +101,7 @@
 		var o = this, c = o.config;
 		!c.scriptProcessor || c.scriptProcessor.disconnect();
 		if(c.stream){
-			c.stream.stop();
+      c.stream.getAudioTracks()[0].stop();
 			c.stream = null;
 		}
 	}
